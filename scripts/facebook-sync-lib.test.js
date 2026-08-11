@@ -1,23 +1,32 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const {
-	pickLargestImage,
+	pickImageNearWidth,
 	filterNewPhotos,
 	buildGalleryEntry,
 	sortGalleryNewestFirst,
 } = require("./facebook-sync-lib.js");
 
-test("pickLargestImage wählt das breiteste Bild", () => {
+test("pickImageNearWidth wählt das kleinste Bild ab Zielbreite", () => {
+	const images = [
+		{ width: 480, height: 320, source: "small.jpg" },
+		{ width: 2048, height: 1536, source: "huge.jpg" },
+		{ width: 1200, height: 900, source: "medium.jpg" },
+	];
+	assert.equal(pickImageNearWidth(images, 1024).source, "medium.jpg");
+});
+
+test("pickImageNearWidth fällt auf das größte Bild zurück, wenn keins die Zielbreite erreicht", () => {
 	const images = [
 		{ width: 200, height: 133, source: "small.jpg" },
 		{ width: 800, height: 600, source: "large.jpg" },
 		{ width: 400, height: 300, source: "medium.jpg" },
 	];
-	assert.equal(pickLargestImage(images).source, "large.jpg");
+	assert.equal(pickImageNearWidth(images, 1024).source, "large.jpg");
 });
 
-test("pickLargestImage gibt null bei leerem Array zurück", () => {
-	assert.equal(pickLargestImage([]), null);
+test("pickImageNearWidth gibt null bei leerem Array zurück", () => {
+	assert.equal(pickImageNearWidth([], 1024), null);
 });
 
 test("filterNewPhotos lässt bekannte und ausgeschlossene IDs weg", () => {
