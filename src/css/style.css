@@ -19,6 +19,7 @@
 
 /* ===== Reset ===== */
 *, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 body {
 	margin: 0;
@@ -385,6 +386,11 @@ p { margin: 0 0 1.1em; }
 	background: var(--color-bg-alt);
 }
 .gallery-placeholder p { color: var(--color-text-muted); max-width: 46ch; margin: 0 auto 1.5em; }
+
+.load-more-wrap {
+	text-align: center;
+	margin-top: 2rem;
+}
 
 .video-embed {
 	position: relative;

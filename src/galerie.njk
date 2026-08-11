@@ -16,11 +16,21 @@ description: Nageldesign-Galerie von Priema Nageldesign – Schmuck, Schuhe, Mus
 		</div>
 
 		<div class="gallery-panel is-active" id="panel-nails" role="tabpanel" aria-labelledby="tab-nails" data-panel="nails">
+			{% if nailsGallery.length > 0 %}
+			<div class="photo-grid" data-page-size="24">
+				{% for photo in nailsGallery %}
+				<button type="button" data-full="{% imageUrl "nails/" + photo.filename, 480 %}">
+					{% imageDeferred "nails/" + photo.filename, "Nailart-Arbeit von Priema Nageldesign" %}
+				</button>
+				{% endfor %}
+			</div>
+			<p class="load-more-wrap"><button type="button" class="btn load-more" data-load-more>Mehr laden</button></p>
+			{% else %}
 			<div class="gallery-placeholder">
 				<h3>Diese Galerie wird bald live verbunden</h3>
-				<p>Hier zeigen wir demnächst automatisch aktuelle Nailart-Arbeiten über einen Instagram/Facebook-Feed – schaut in der Zwischenzeit gerne auf <a href="{{ site.facebookUrl }}" target="_blank" rel="noopener">unserer Facebook-Seite</a> vorbei.</p>
-				<div id="gallery-feed-nails"></div>
+				<p>Hier zeigen wir automatisch aktuelle Nailart-Arbeiten von unserer <a href="{{ site.facebookUrl }}" target="_blank" rel="noopener">Facebook-Seite</a> – die Anbindung ist eingerichtet, die ersten Fotos folgen mit dem nächsten Sync.</p>
 			</div>
+			{% endif %}
 		</div>
 
 		<div class="gallery-panel" id="panel-schmuck" role="tabpanel" aria-labelledby="tab-schmuck" data-panel="schmuck" hidden>
