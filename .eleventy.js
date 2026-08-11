@@ -44,6 +44,28 @@ async function imageUrlShortcode(src, width) {
 	return metadata.jpeg[0].url;
 }
 
+async function imageDeferredShortcode(src, alt) {
+	if (!alt) {
+		throw new Error(`Fehlendes alt-Attribut für Bild: ${src}`);
+	}
+
+	const metadata = await Image(path.join("src/images", src), {
+		widths: [480],
+		formats: ["webp", "jpeg"],
+		outputDir: "_site/img/",
+		urlPath: pathPrefix + "img/",
+		filenameFormat: function (id, src, width, format) {
+			const name = path.basename(src, path.extname(src));
+			return `${name}-${width}w.${format}`;
+		},
+	});
+
+	const webp = metadata.webp[0];
+	const jpeg = metadata.jpeg[0];
+
+	return `<picture><source type="image/webp" data-srcset="${webp.url}"><img data-src="${jpeg.url}" alt="${alt}" width="${jpeg.width}" height="${jpeg.height}" loading="lazy" decoding="async"></picture>`;
+}
+
 module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/css");
 	eleventyConfig.addPassthroughCopy("src/js");
@@ -51,6 +73,7 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addAsyncShortcode("image", imageShortcode);
 	eleventyConfig.addAsyncShortcode("imageUrl", imageUrlShortcode);
+	eleventyConfig.addAsyncShortcode("imageDeferred", imageDeferredShortcode);
 
 	eleventyConfig.addFilter("currentYear", () => new Date().getFullYear());
 	eleventyConfig.addFilter("pad2", (n) => String(n).padStart(2, "0"));
