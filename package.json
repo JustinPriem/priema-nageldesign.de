@@ -7,7 +7,7 @@
     "start": "eleventy --serve",
     "build": "eleventy",
     "debug": "eleventy --serve --incremental",
-    "test": "node --test scripts/"
+    "test": "node --test scripts/*.test.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
