@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const {
-	pickLargestImage,
+	pickImageNearWidth,
 	filterNewPhotos,
 	buildGalleryEntry,
 	sortGalleryNewestFirst,
@@ -57,10 +57,26 @@ async function runSync({
 
 	const added = [];
 	for (const photo of newPhotos) {
-		const largest = pickLargestImage(photo.images);
-		if (!largest) continue;
+		// Die ID landet als Dateiname auf der Platte und später als
+		// HTML-Attribut auf der Seite — nur numerische IDs zulassen.
+		if (!/^\d+$/.test(String(photo.id))) {
+			console.warn(`Foto mit unerwarteter ID übersprungen: ${photo.id}`);
+			continue;
+		}
+		const chosen = pickImageNearWidth(photo.images, 1024);
+		if (!chosen) {
+			console.warn(`Foto ${photo.id} übersprungen: keine Bildvarianten geliefert.`);
+			continue;
+		}
 		const filename = `${photo.id}.jpg`;
-		await downloadImpl(largest.source, path.join(imagesDir, filename), fetchImpl);
+		try {
+			await downloadImpl(chosen.source, path.join(imagesDir, filename), fetchImpl);
+		} catch (err) {
+			// Ein einzelner fehlgeschlagener Download darf nicht den
+			// kompletten Sync (und damit alle anderen Fotos) verwerfen.
+			console.warn(`Download von Foto ${photo.id} fehlgeschlagen, wird übersprungen: ${err.message}`);
+			continue;
+		}
 		added.push(buildGalleryEntry(photo, filename));
 	}
 
@@ -104,9 +120,6 @@ if (require.main === module) {
 	})
 		.then((result) => {
 			console.log(`Sync abgeschlossen: ${result.added.length} neu, ${result.removed.length} entfernt.`);
-			if (process.env.GITHUB_OUTPUT) {
-				fs.appendFileSync(process.env.GITHUB_OUTPUT, `changed=${result.changed}\n`);
-			}
 		})
 		.catch((err) => {
 			console.error(err);

@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: sync-facebook-photos
@@ -29,6 +30,7 @@ jobs:
         run: node scripts/sync-facebook-photos.js
 
       - name: Commit and push if changed
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -36,6 +38,17 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "chore: sync Facebook-Fotos"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           else
             echo "Keine neuen Facebook-Fotos."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
+
+      # Pushes mit dem GITHUB_TOKEN lösen keine weiteren Workflows aus
+      # (GitHub-Actions-Beschränkung). workflow_dispatch ist davon
+      # ausgenommen, also stoßen wir den Deploy hier explizit an.
+      - name: Trigger deploy workflow
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --ref main
