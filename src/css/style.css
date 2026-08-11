@@ -239,6 +239,63 @@ p { margin: 0 0 1.1em; }
 	background: var(--color-accent);
 }
 
+/* ===== Icons ===== */
+.icon {
+	width: 20px;
+	height: 20px;
+	display: block;
+}
+
+/* ===== Social links ===== */
+.social-links {
+	display: flex;
+	gap: 0.75rem;
+}
+.social-links a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	border: 1px solid var(--color-border);
+	color: var(--color-text-muted);
+	transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.social-links a:hover {
+	border-color: var(--color-accent-dark);
+	color: var(--color-accent-dark);
+	background: var(--color-accent-tint);
+}
+
+/* ===== Info blocks (Leistungen) ===== */
+.info-stack {
+	display: flex;
+	flex-direction: column;
+}
+.info-block {
+	padding: 1.6rem 0;
+	border-bottom: 1px solid var(--color-border);
+}
+.info-block:first-child { padding-top: 0; }
+.info-block:last-child { border-bottom: none; padding-bottom: 0; }
+.info-block h2 { margin-bottom: 0.5em; }
+
+/* ===== Certificate grid (Über mich) ===== */
+.cert-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	gap: 1rem;
+}
+.cert-grid img {
+	width: 100%;
+	aspect-ratio: 1 / 1.4142;
+	object-fit: contain;
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius);
+}
+
 /* ===== Price table ===== */
 .price-table {
 	width: 100%;
@@ -392,6 +449,12 @@ p { margin: 0 0 1.1em; }
 	margin-bottom: 0.3em;
 }
 .site-footer a { color: var(--color-text-muted); }
+.footer-contact-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55em;
+}
+.footer-contact-link .icon { width: 16px; height: 16px; }
 .site-footer__legal ul { display: flex; gap: 1rem; margin-bottom: 0.75rem; }
 @media (max-width: 700px) {
 	.site-footer__grid { grid-template-columns: 1fr; gap: 1.5rem; }

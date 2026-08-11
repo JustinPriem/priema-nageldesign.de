@@ -3,6 +3,7 @@ layout: layouts/base.njk
 title: Start
 description: Priema Nageldesign – Nageldesign mit Herz in Bad Berka. Nail Art, Stamping, Airbrush und liebevolle Handarbeit von Nadine Priem.
 ---
+{%- from "partials/icons.njk" import icon -%}
 <section class="hero">
 	<div class="wrap hero__grid">
 		<div>
@@ -20,7 +21,7 @@ description: Priema Nageldesign – Nageldesign mit Herz in Bad Berka. Nail Art,
 <section class="section section--alt">
 	<div class="wrap">
 		<div class="section-intro">
-			<h2>Auch hier vertreten</h2>
+			<h2>Specials</h2>
 			<p>Ein paar Einblicke in besondere Auftragsarbeiten abseits der klassischen Nagelmodellage.</p>
 		</div>
 		<div class="card-grid">
@@ -39,6 +40,11 @@ description: Priema Nageldesign – Nageldesign mit Herz in Bad Berka. Nail Art,
 				<p>Meine erste Auftragsarbeit mit der Airbrush-Pistole: ein Modellauto, das den 2. Platz erreichte.</p>
 			</div>
 		</div>
-		<p style="margin-top: 2rem; color: var(--color-text-muted);">Auch auf Facebook zu finden: <a href="https://www.facebook.com/NagelstudioPriemaNageldesign" target="_blank" rel="noopener">facebook.com/NagelstudioPriemaNageldesign</a></p>
+		<ul class="social-links" style="margin-top: 2.5rem;">
+			<li><a href="{{ site.facebookUrl }}" target="_blank" rel="noopener" aria-label="Facebook">{{ icon("facebook") }}</a></li>
+			<li><a href="{{ site.instagramUrl }}" target="_blank" rel="noopener" aria-label="Instagram">{{ icon("instagram") }}</a></li>
+			<li><a href="mailto:{{ site.email }}" aria-label="E-Mail">{{ icon("mail") }}</a></li>
+			<li><a href="tel:{{ site.phone }}" aria-label="Telefon">{{ icon("phone") }}</a></li>
+		</ul>
 	</div>
 </section>

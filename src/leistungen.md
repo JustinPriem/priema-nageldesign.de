@@ -9,15 +9,25 @@ description: Nail Art, Stamping und Airbrush bei Priema Nageldesign – Preise, 
 <h1>Leistungen</h1>
 
 <div class="hero__grid" style="grid-template-columns: 0.9fr 1.1fr; align-items: start;">
-<div>
+<div class="info-stack">
+
+<div class="info-block">
 
 ## Zeitaufwand
 
 Die Behandlungs- bzw. Modellagedauer ist abhängig vom gewählten Design. Bei einfachem French sind es ca. 60–80 Minuten, mit einem "all incl."-Design ca. 90–120 Minuten.
 
+</div>
+
+<div class="info-block">
+
 ## Produkte
 
 Ich arbeite überwiegend mit Produkten von **Jolifin**, **NailCode** und **Eubecos**.
+
+</div>
+
+<div class="info-block">
 
 ## Service
 
@@ -31,12 +41,16 @@ Ich arbeite überwiegend mit Produkten von **Jolifin**, **NailCode** und **Eubec
 </ul>
 
 </div>
+
+</div>
 <div>
 
 {% image "schmuck/schmuck-05.jpg", "Nageldesign-Detailarbeit von Priema Nageldesign" %}
 
 </div>
 </div>
+
+<div class="card" style="margin-top: 3rem;">
 
 ## Preise
 
@@ -55,10 +69,8 @@ Ich arbeite überwiegend mit Produkten von **Jolifin**, **NailCode** und **Eubec
 <tr><td>Maniküre</td><td>15 €</td></tr>
 </tbody>
 </table>
-<p style="color: var(--color-text-muted); font-size: 0.9rem;">Alle Preise verstehen sich als Richtwerte, Änderungen vorbehalten.</p>
+<p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 0;">Alle Preise verstehen sich als Richtwerte, Änderungen vorbehalten.</p>
 
-<div class="notice" style="margin-top: 1rem;">
-<strong>Öffnungszeiten / Terminvergabe folgen in Kürze.</strong> Termine werden aktuell individuell nach Absprache vereinbart – am einfachsten über die <a href="{{ '/kontakt/' | url }}">Kontaktseite</a>.
 </div>
 
 </div>
