@@ -81,15 +81,19 @@
 		var loadMoreBtn = grid.parentElement.querySelector("[data-load-more]");
 
 		function activateItem(item) {
+			item.hidden = false;
+			// Erst die <source>-Kandidaten, dann das <img>: sonst kann sich
+			// der Browser schon auf das JPEG festlegen, bevor das WebP
+			// überhaupt ein srcset hat.
+			var sources = item.querySelectorAll("source[data-srcset]");
+			sources.forEach(function (source) {
+				source.srcset = source.getAttribute("data-srcset");
+				source.removeAttribute("data-srcset");
+			});
 			var img = item.querySelector("img[data-src]");
 			if (img) {
 				img.src = img.getAttribute("data-src");
 				img.removeAttribute("data-src");
-			}
-			var source = item.querySelector("source[data-srcset]");
-			if (source) {
-				source.srcset = source.getAttribute("data-srcset");
-				source.removeAttribute("data-srcset");
 			}
 		}
 

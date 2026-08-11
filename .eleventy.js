@@ -44,7 +44,9 @@ async function imageUrlShortcode(src, width) {
 	return metadata.jpeg[0].url;
 }
 
-async function imageDeferredShortcode(src, alt) {
+// defer=true: nur data-src/data-srcset, das Bild wird erst durch JS aktiviert.
+// defer=false: echtes src/srcset, damit die erste Portion auch ohne JS sichtbar ist.
+async function imageDeferredShortcode(src, alt, defer = true) {
 	if (!alt) {
 		throw new Error(`Fehlendes alt-Attribut für Bild: ${src}`);
 	}
@@ -63,7 +65,10 @@ async function imageDeferredShortcode(src, alt) {
 	const webp = metadata.webp[0];
 	const jpeg = metadata.jpeg[0];
 
-	return `<picture><source type="image/webp" data-srcset="${webp.url}"><img data-src="${jpeg.url}" alt="${alt}" width="${jpeg.width}" height="${jpeg.height}" loading="lazy" decoding="async"></picture>`;
+	const sourceAttr = defer ? "data-srcset" : "srcset";
+	const imgAttr = defer ? "data-src" : "src";
+
+	return `<picture><source type="image/webp" ${sourceAttr}="${webp.url}"><img ${imgAttr}="${jpeg.url}" alt="${alt}" width="${jpeg.width}" height="${jpeg.height}" loading="lazy" decoding="async"></picture>`;
 }
 
 module.exports = function (eleventyConfig) {

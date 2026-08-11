@@ -19,8 +19,8 @@ description: Nageldesign-Galerie von Priema Nageldesign – Schmuck, Schuhe, Mus
 			{% if nailsGallery.length > 0 %}
 			<div class="photo-grid" data-page-size="24">
 				{% for photo in nailsGallery %}
-				<button type="button" data-full="{% imageUrl "nails/" + photo.filename, 480 %}">
-					{% imageDeferred "nails/" + photo.filename, "Nailart-Arbeit von Priema Nageldesign" %}
+				<button type="button" data-full="{% imageUrl "nails/" + photo.filename, 1024 %}" {% if loop.index > 24 %}hidden{% endif %}>
+					{% imageDeferred "nails/" + photo.filename, "Nailart-Arbeit von Priema Nageldesign", loop.index > 24 %}
 				</button>
 				{% endfor %}
 			</div>
