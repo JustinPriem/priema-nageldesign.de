@@ -1,0 +1,15 @@
+{
+  "name": "priema-nageldesign",
+  "version": "1.0.0",
+  "description": "Website von Priema Nageldesign (Nadine Priem, Bad Berka)",
+  "private": true,
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "debug": "eleventy --serve --incremental"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-img": "^5.0.0"
+  }
+}

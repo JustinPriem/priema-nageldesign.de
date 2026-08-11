@@ -1,0 +1,30 @@
+{
+  "name": "Priema Nageldesign",
+  "owner": "Nadine Priem",
+  "tagline": "Nageldesign mit Herz in Bad Berka",
+  "address": {
+    "street": "Zum Erfurter Tal 15",
+    "zip": "99438",
+    "city": "Bad Berka"
+  },
+  "phone": "+49 172 2816307",
+  "phoneDisplay": "0172 2816307",
+  "phoneLandline": "+49 36458 47813",
+  "phoneLandlineDisplay": "036458 47813",
+  "email": "priema-nageldesign@t-online.de",
+  "taxNumber": "81 063 694 525",
+  "facebookUrl": "https://www.facebook.com/NagelstudioPriemaNageldesign",
+  "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Zum+Erfurter+Tal+15,+99438+Bad+Berka",
+  "nav": [
+    { "text": "Start", "url": "/" },
+    { "text": "Über mich", "url": "/ueber-mich/" },
+    { "text": "Leistungen", "url": "/leistungen/" },
+    { "text": "Galerie", "url": "/galerie/" },
+    { "text": "Wissenswertes", "url": "/wissenswertes/" },
+    { "text": "Kontakt", "url": "/kontakt/" }
+  ],
+  "footerNav": [
+    { "text": "Impressum", "url": "/impressum/" },
+    { "text": "Datenschutz", "url": "/datenschutz/" }
+  ]
+}

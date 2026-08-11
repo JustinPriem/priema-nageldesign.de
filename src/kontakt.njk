@@ -1,0 +1,42 @@
+---
+layout: layouts/base.njk
+title: Kontakt
+description: Kontaktiere Priema Nageldesign in Bad Berka telefonisch oder per E-Mail für deinen individuellen Termin.
+---
+<section class="section">
+	<div class="wrap">
+		<h1>Kontakt</h1>
+		<p class="hero__lead">Ich freue mich auf deine Nachricht – melde dich einfach per Telefon oder E-Mail für einen individuellen Termin.</p>
+
+		<div class="contact-grid" style="margin-top: 2.5rem;">
+			<div>
+				<dl class="contact-list">
+					<div>
+						<dt>Adresse</dt>
+						<dd>{{ site.address.street }}<br>{{ site.address.zip }} {{ site.address.city }}</dd>
+					</div>
+					<div>
+						<dt>Telefon</dt>
+						<dd><a href="tel:{{ site.phone }}">{{ site.phoneDisplay }}</a> · <a href="tel:{{ site.phoneLandline }}">{{ site.phoneLandlineDisplay }}</a></dd>
+					</div>
+					<div>
+						<dt>E-Mail</dt>
+						<dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd>
+					</div>
+					<div>
+						<dt>Facebook</dt>
+						<dd><a href="{{ site.facebookUrl }}" target="_blank" rel="noopener">Priema Nageldesign</a></dd>
+					</div>
+				</dl>
+				<p><a class="btn btn--filled" href="{{ site.mapsUrl }}" target="_blank" rel="noopener">In Google Maps öffnen</a></p>
+
+				<div class="notice" style="margin-top: 2rem;">
+					<strong>Öffnungszeiten / Terminvergabe folgen in Kürze.</strong> Termine werden aktuell individuell nach Absprache vereinbart – am einfachsten telefonisch oder per E-Mail.
+				</div>
+			</div>
+			<div class="hero__media">
+				{% image "muster/muster-01.jpg", "Nageldesign-Muster von Priema Nageldesign" %}
+			</div>
+		</div>
+	</div>
+</section>

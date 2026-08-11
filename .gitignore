@@ -1,0 +1,23 @@
+# Alter HTTrack-Download der Jimdo-Seite (nur lokales Quellmaterial, nicht Teil des neuen Repos)
+assets.jimstatic.com/
+image.jimcdn.com/
+u.jimcdn.com/
+translate.google.com/
+www.google-analytics.com/
+priema-nageldesign.jimdofree.com/
+hts-cache/
+hts-log.txt
+cookies.txt
+backblue.gif
+fade.gif
+index.html
+
+# Node / Eleventy
+node_modules/
+_site/
+.cache/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.claude/settings.local.json

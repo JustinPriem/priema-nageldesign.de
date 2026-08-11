@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{ title }} · {{ site.name }}</title>
+	<meta name="description" content="{{ description or site.tagline }}">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+	<a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+	<header class="site-header">
+		<div class="wrap site-header__bar">
+			<a class="site-header__logo" href="/">{{ site.name }}</a>
+
+			<button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav">
+				<span class="nav-toggle__label">Menü</span>
+				<span class="nav-toggle__icon" aria-hidden="true"></span>
+			</button>
+
+			<nav class="site-nav" id="main-nav" aria-label="Hauptnavigation">
+				<ul>
+					{% for item in site.nav %}
+					<li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.text }}</a></li>
+					{% endfor %}
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main id="main">
+		{{ content | safe }}
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap site-footer__grid">
+			<div>
+				<p class="site-footer__brand">{{ site.name }}</p>
+				<p>{{ site.address.street }}<br>{{ site.address.zip }} {{ site.address.city }}</p>
+			</div>
+			<div>
+				<p><a href="tel:{{ site.phone }}">{{ site.phoneDisplay }}</a></p>
+				<p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+			</div>
+			<div class="site-footer__legal">
+				<ul>
+					{% for item in site.footerNav %}
+					<li><a href="{{ item.url }}">{{ item.text }}</a></li>
+					{% endfor %}
+				</ul>
+				<p>&copy; {{ "now" | currentYear }} {{ site.name }}</p>
+			</div>
+		</div>
+	</footer>
+
+	<script src="/js/nav.js"></script>
+	{% if page.url == "/galerie/" %}<script src="/js/gallery.js" defer></script>{% endif %}
+</body>
+</html>
