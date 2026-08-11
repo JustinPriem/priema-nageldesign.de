@@ -1,6 +1,9 @@
 const Image = require("@11ty/eleventy-img");
 const path = require("path");
 
+// GitHub Pages project site → served under /priema-nageldesign.de/, not at domain root.
+const pathPrefix = "/priema-nageldesign.de/";
+
 async function imageShortcode(src, alt, sizes = "100vw", widths = [400, 800, 1200]) {
 	if (!alt) {
 		throw new Error(`Fehlendes alt-Attribut für Bild: ${src}`);
@@ -10,7 +13,7 @@ async function imageShortcode(src, alt, sizes = "100vw", widths = [400, 800, 120
 		widths: [...widths, null],
 		formats: ["webp", "jpeg"],
 		outputDir: "_site/img/",
-		urlPath: "/img/",
+		urlPath: pathPrefix + "img/",
 		filenameFormat: function (id, src, width, format) {
 			const name = path.basename(src, path.extname(src));
 			return `${name}-${width}w.${format}`;
@@ -32,7 +35,7 @@ async function imageUrlShortcode(src, width) {
 		widths: [width],
 		formats: ["jpeg"],
 		outputDir: "_site/img/",
-		urlPath: "/img/",
+		urlPath: pathPrefix + "img/",
 		filenameFormat: function (id, src, w, format) {
 			const name = path.basename(src, path.extname(src));
 			return `${name}-${w}w.${format}`;
@@ -53,6 +56,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addFilter("pad2", (n) => String(n).padStart(2, "0"));
 
 	return {
+		pathPrefix,
 		dir: {
 			input: "src",
 			output: "_site",

@@ -58,7 +58,7 @@ Ich arbeite überwiegend mit Produkten von **Jolifin**, **NailCode** und **Eubec
 <p style="color: var(--color-text-muted); font-size: 0.9rem;">Alle Preise verstehen sich als Richtwerte, Änderungen vorbehalten.</p>
 
 <div class="notice" style="margin-top: 1rem;">
-<strong>Öffnungszeiten / Terminvergabe folgen in Kürze.</strong> Termine werden aktuell individuell nach Absprache vereinbart – am einfachsten über die <a href="/kontakt/">Kontaktseite</a>.
+<strong>Öffnungszeiten / Terminvergabe folgen in Kürze.</strong> Termine werden aktuell individuell nach Absprache vereinbart – am einfachsten über die <a href="{{ '/kontakt/' | url }}">Kontaktseite</a>.
 </div>
 
 </div>
