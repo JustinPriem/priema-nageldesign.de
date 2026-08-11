@@ -70,4 +70,41 @@
 	document.addEventListener("keydown", function (event) {
 		if (event.key === "Escape") closeLightbox();
 	});
+
+	// Paginierte Grids (z.B. die von Facebook synchronisierte Nails-Galerie):
+	// Bilder jenseits der ersten Portion bekommen erst beim Klick auf
+	// "Mehr laden" eine echte Bildquelle, damit sie nicht ungefragt geladen werden.
+	document.querySelectorAll("[data-page-size]").forEach(function (grid) {
+		var pageSize = parseInt(grid.dataset.pageSize, 10);
+		var items = Array.prototype.slice.call(grid.children);
+		var shown = 0;
+		var loadMoreBtn = grid.parentElement.querySelector("[data-load-more]");
+
+		function activateItem(item) {
+			var img = item.querySelector("img[data-src]");
+			if (img) {
+				img.src = img.getAttribute("data-src");
+				img.removeAttribute("data-src");
+			}
+			var source = item.querySelector("source[data-srcset]");
+			if (source) {
+				source.srcset = source.getAttribute("data-srcset");
+				source.removeAttribute("data-srcset");
+			}
+		}
+
+		function showNextPage() {
+			var next = items.slice(shown, shown + pageSize);
+			next.forEach(activateItem);
+			shown += next.length;
+			if (loadMoreBtn) {
+				loadMoreBtn.hidden = shown >= items.length;
+			}
+		}
+
+		showNextPage();
+		if (loadMoreBtn) {
+			loadMoreBtn.addEventListener("click", showNextPage);
+		}
+	});
 })();
