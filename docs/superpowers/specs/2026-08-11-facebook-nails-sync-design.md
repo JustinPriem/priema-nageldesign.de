@@ -82,7 +82,7 @@ Nadine muss (ggf. mit Justins Anleitung) über die Facebook-Entwicklertools eine
 
 ## Speicher- und Traffic-Abschätzung
 
-Bei ~500–600 Fotos à ~2 Dateien (WebP + JPEG, max. 480px breit) und geschätzt 50–70 KB pro Datei: ca. 60–80 MB Repo-Zuwachs — unproblematisch für Git. Erste Seitenlast durch den "Mehr laden"-Mechanismus auf eine Portion (Standard: 24 Fotos, ca. 1–2 MB) begrenzt, unabhängig von der Gesamtzahl der Fotos. Sollte die Sammlung über die Jahre sehr groß werden, ist eine harte Obergrenze ("nur die neuesten X synchronisieren") im Sync-Skript leicht nachrüstbar — aktuell nicht nötig (YAGNI).
+Ins Repo committet wird pro Foto **ein Original mit ca. 1024px Breite** (die kleinste von Facebook angebotene Variante, die noch mindestens 1024px breit ist — nicht die tatsächlich größte, die oft 2048px+ hat). Bei ~500–600 Fotos à geschätzt 150–250 KB sind das ca. 80–150 MB Repo-Zuwachs — für Git noch unproblematisch, im Gegensatz zu den Volloriginalen. Die 1024px sind gleichzeitig die Quelle für die Lightbox-Ansicht. Die daraus abgeleiteten Auslieferungsdateien (WebP + JPEG, 480px für das Grid) entstehen erst beim Build in `_site/` und liegen nicht im Repo. Erste Seitenlast durch den "Mehr laden"-Mechanismus auf eine Portion (Standard: 24 Fotos, ca. 1–2 MB) begrenzt, unabhängig von der Gesamtzahl der Fotos. Sollte die Sammlung über die Jahre sehr groß werden, ist eine harte Obergrenze ("nur die neuesten X synchronisieren") im Sync-Skript leicht nachrüstbar — aktuell nicht nötig (YAGNI).
 
 ## Verifikation
 

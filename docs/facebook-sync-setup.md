@@ -30,6 +30,11 @@ Nageldesign"** ist.
    - Dort auf **"Extend Access Token"** klicken. Der verlängerte Token
      gilt ca. 60 Tage und erneuert sich als Page Token danach in der
      Regel automatisch, solange der Account Admin der Seite bleibt.
+   - **Vor dem Kopieren prüfen:** Der Access Token Debugger muss jetzt
+     bei "Expires" **"Never"** anzeigen. Steht dort weiterhin ein Datum
+     bzw. eine Uhrzeit, ist die Verlängerung schiefgegangen — dann
+     diesen Schritt wiederholen, statt den kurzlebigen Token zu
+     hinterlegen.
 6. Den langen Token-String kopieren.
 
 ## 3. Page-ID herausfinden
@@ -65,9 +70,30 @@ in `src/images/nails/`, z. B. `123456789.jpg` → ID `123456789`) in
 GitHub im Browser bearbeiten). Beim nächsten Sync-Lauf verschwindet das
 Foto von der Website.
 
+Wichtig andersherum: Ein Foto **auf Facebook zu löschen entfernt es
+nicht** automatisch von der Website — der Sync fügt nur hinzu. Soll ein
+auf Facebook gelöschtes Foto auch von der Website verschwinden, muss
+seine ID genauso in `nailsExcluded.json` eingetragen werden.
+
 ## Wenn der Sync mal fehlschlägt
 
 Das betrifft nur den Sync-Workflow, nicht die Website selbst — die bleibt
 online und zeigt weiterhin die zuletzt synchronisierten Fotos. Häufigste
 Ursache: der Token ist abgelaufen oder wurde widerrufen. Schritte 2 und 4
 oben wiederholen, um einen neuen Token zu hinterlegen.
+
+Die Fehler-Benachrichtigungsmail zu einem fehlgeschlagenen geplanten Lauf
+geht an den GitHub-Account, der die Workflow-Datei zuletzt bearbeitet hat
+— also voraussichtlich an den Account, der dieses Setup durchführt. Dort
+also nach Benachrichtigungen schauen, wenn etwas stillschweigend nicht
+mehr läuft.
+
+## Wenn der Sync nach längerer Pause gar nicht mehr läuft
+
+GitHub deaktiviert `schedule`-gesteuerte Workflows automatisch, wenn in
+einem Repository 60 Tage lang keine Aktivität stattgefunden hat. Wenn der
+Sync nach einer längeren ruhigen Phase kommentarlos aufhört zu laufen,
+ist das meist die Ursache. Lösung: im Repository → Tab **"Actions"** →
+Workflow **"Sync Facebook photos"** öffnen und dort wieder aktivieren
+("Enable workflow"). Alternativ genügt ein beliebiger kleiner Commit oder
+ein einmaliger manueller Lauf über "Run workflow".
