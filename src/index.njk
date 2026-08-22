@@ -4,8 +4,8 @@ title: Start
 description: Priema Nageldesign – Nageldesign mit Herz in Bad Berka. Nail Art, Stamping, Airbrush und liebevolle Handarbeit von Nadine Priem.
 ---
 {%- from "partials/icons.njk" import icon -%}
-<section class="hero">
-	<div class="wrap hero__grid">
+<section class="hero hero--center">
+	<div class="wrap hero__grid" style="grid-template-columns: 1fr;">
 		<div>
 			<p class="hero__eyebrow">Nageldesign in Bad Berka</p>
 			<h1>Herzlich willkommen in meinem Studio</h1>
@@ -20,7 +20,7 @@ description: Priema Nageldesign – Nageldesign mit Herz in Bad Berka. Nail Art,
 
 <section class="section section--alt">
 	<div class="wrap">
-		<div class="section-intro">
+		<div class="section-intro section-intro--center">
 			<h2>Specials</h2>
 			<p>Ein paar Einblicke in besondere Auftragsarbeiten abseits der klassischen Nagelmodellage.</p>
 		</div>
@@ -40,9 +40,25 @@ description: Priema Nageldesign – Nageldesign mit Herz in Bad Berka. Nail Art,
 				<p>Meine erste Auftragsarbeit mit der Airbrush-Pistole: ein Modellauto, das den 2. Platz erreichte.</p>
 			</div>
 		</div>
-		<ul class="social-links" style="margin-top: 2.5rem;">
+	</div>
+</section>
+
+<section class="section">
+	<div class="wrap">
+		<div class="insta-feature">
+			<span class="dot-divider" style="margin-bottom: 1.4rem;"></span>
+			<div class="insta-feature__badge">{{ icon("polish") }}</div>
+			<h2>Aktuelle Nail-Art auf Instagram</h2>
+			<p>Neue Designs zeige ich zuerst dort – ein Blick lohnt sich, bevor du deinen nächsten Termin planst.</p>
+			<a class="btn btn--filled" href="{{ site.instagramUrl }}" target="_blank" rel="noopener">@priema.nageldesign folgen</a>
+		</div>
+	</div>
+</section>
+
+<section class="section section--alt">
+	<div class="wrap">
+		<ul class="social-links" style="justify-content: center;">
 			<li><a href="{{ site.facebookUrl }}" target="_blank" rel="noopener" aria-label="Facebook">{{ icon("facebook") }}</a></li>
-			<li><a href="{{ site.instagramUrl }}" target="_blank" rel="noopener" aria-label="Instagram">{{ icon("instagram") }}</a></li>
 			<li><a href="mailto:{{ site.email }}" aria-label="E-Mail">{{ icon("mail") }}</a></li>
 			<li><a href="tel:{{ site.phone }}" aria-label="Telefon">{{ icon("phone") }}</a></li>
 		</ul>

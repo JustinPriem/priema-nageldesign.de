@@ -21,3 +21,6 @@ _site/
 .DS_Store
 Thumbs.db
 .claude/settings.local.json
+
+# Superpowers brainstorming companion (lokale Mockup-Session)
+.superpowers/

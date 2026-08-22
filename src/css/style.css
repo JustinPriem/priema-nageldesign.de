@@ -9,13 +9,36 @@
 	--color-accent: #8a4b68;
 	--color-accent-dark: #5f3049;
 	--color-accent-tint: #f4e7ee;
+	--color-gold: #c6a15b;
 
 	--font-heading: "Cormorant Garamond", Georgia, serif;
 	--font-body: "Inter", -apple-system, Segoe UI, Roboto, sans-serif;
 
 	--container-width: 1120px;
-	--radius: 4px;
+	--radius: 6px;
 }
+
+/* ===== Wiederkehrendes Lack-Punkt-Motiv ===== */
+.dot-divider {
+	width: 42px;
+	height: 1px;
+	background: var(--color-gold);
+	margin: 0.6rem auto 0;
+}
+.polish-dot {
+	display: block;
+	border-radius: 50%;
+	background: conic-gradient(from 200deg, var(--color-accent), var(--color-gold), var(--color-accent-dark), var(--color-accent));
+	position: relative;
+}
+.polish-dot::after {
+	content: "";
+	position: absolute;
+	inset: 14%;
+	background: var(--color-bg);
+	border-radius: 50%;
+}
+.section--alt .polish-dot::after { background: var(--color-bg-alt); }
 
 /* ===== Reset ===== */
 *, *::before, *::after { box-sizing: border-box; }
@@ -66,6 +89,7 @@ p { margin: 0 0 1.1em; }
 .section--alt { background: var(--color-bg-alt); }
 .section-intro { max-width: 640px; margin: 0 0 2.5rem; }
 .section-intro p { color: var(--color-text-muted); }
+.section-intro--center { max-width: 560px; margin-left: auto; margin-right: auto; text-align: center; }
 
 /* ===== Header / nav ===== */
 .site-header {
@@ -81,6 +105,7 @@ p { margin: 0 0 1.1em; }
 	justify-content: space-between;
 	padding-top: 1.1rem;
 	padding-bottom: 1.1rem;
+	position: relative;
 }
 .site-header__logo {
 	font-family: var(--font-heading);
@@ -88,7 +113,18 @@ p { margin: 0 0 1.1em; }
 	font-weight: 600;
 	color: var(--color-text);
 	text-decoration: none;
-	letter-spacing: 0.02em;
+	letter-spacing: 0.03em;
+}
+.site-header .dot-divider { display: none; }
+
+@media (min-width: 781px) {
+	.site-header__bar {
+		flex-direction: column;
+		justify-content: center;
+		padding-top: 1.3rem;
+	}
+	.site-header__logo { font-size: 1.55rem; }
+	.site-header .dot-divider { display: block; margin-top: 0.5rem; margin-bottom: 0.6rem; }
 }
 
 .nav-toggle {
@@ -191,6 +227,39 @@ p { margin: 0 0 1.1em; }
 	.hero__grid { grid-template-columns: 1fr; }
 }
 
+/* Zentrierter Hero (Startseite): Headline zuerst, Bild darunter als Schaufenster */
+.hero--center {
+	text-align: center;
+}
+.hero--center .hero__lead { max-width: 52ch; margin-left: auto; margin-right: auto; }
+.hero--center .hero__media {
+	max-width: 620px;
+	margin: 2.5rem auto 0;
+}
+.hero--center .hero__media img { border-radius: var(--radius); }
+
+/* ===== Instagram-Feature (ersetzt den bisherigen Icon-Link) ===== */
+.insta-feature {
+	text-align: center;
+	max-width: 560px;
+	margin: 0 auto;
+}
+.insta-feature__badge {
+	width: 56px;
+	height: 56px;
+	margin: 0 auto 1.1rem;
+	border-radius: 50%;
+	background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+	box-shadow: 0 8px 20px rgba(95, 48, 73, 0.28);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+}
+.insta-feature__badge .icon { width: 22px; height: 22px; }
+.insta-feature p { color: var(--color-text-muted); }
+.insta-feature .btn { margin-top: 0.4rem; }
+
 /* ===== Buttons ===== */
 .btn {
 	display: inline-block;
@@ -219,6 +288,16 @@ p { margin: 0 0 1.1em; }
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius);
 	padding: 1.75rem;
+	transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card:has(figure):hover {
+	box-shadow: 0 12px 28px rgba(50, 30, 25, 0.1);
+	transform: translateY(-2px);
+}
+.card figure {
+	margin: -1.75rem -1.75rem 1.25rem;
+	overflow: hidden;
+	border-radius: var(--radius) var(--radius) 0 0;
 }
 .card h3 { margin-bottom: 0.5em; }
 .card p:last-child { margin-bottom: 0; }
@@ -233,11 +312,11 @@ p { margin: 0 0 1.1em; }
 	content: "";
 	position: absolute;
 	left: 0;
-	top: 0.55em;
-	width: 7px;
-	height: 7px;
+	top: 0.5em;
+	width: 9px;
+	height: 9px;
 	border-radius: 50%;
-	background: var(--color-accent);
+	background: conic-gradient(from 200deg, var(--color-accent), var(--color-gold), var(--color-accent-dark));
 }
 
 /* ===== Icons ===== */

@@ -12,5 +12,8 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-img": "^5.0.0"
+  },
+  "allowScripts": {
+    "sharp@0.33.5": true
   }
 }
